@@ -1,0 +1,18 @@
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+bin/kafka-server-start.sh config/server.properties
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bitirme-activity
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bitirme-no-activity
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bitirme-input
+
+
+python3 dataframe_to_kafka.py --input "/home/selcuk/spark/bitirme-projesi/test_df/data.csv" -t bitirme-input --excluded_cols 'pir_value' --sep ','
+
+python3 streaming.py
+
+
+elastic password: DdU+*3WfBd20Iuo-XD+T
+

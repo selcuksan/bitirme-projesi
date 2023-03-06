@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.VectorAssembler","timestamp":1678030759209,"sparkVersion":"3.3.2","uid":"VectorAssembler_e443cfd0175c","paramMap":{"outputCol":"features","handleInvalid":"skip","inputCols":["co2_value","temp_value","light_value","humidity_value","ohe_col"]},"defaultParamMap":{"outputCol":"VectorAssembler_e443cfd0175c__output","handleInvalid":"error"}}
