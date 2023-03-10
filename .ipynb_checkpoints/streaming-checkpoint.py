@@ -17,23 +17,17 @@ spark = my_helper_obj.get_spark_session(session_params_dict)
 spark.sparkContext.setLogLevel('ERROR')
 
 
-# Read from kafka office-input topic
-read_params_dict = {
-    "format": "kafka",
-    "option": ("kafka.bootstrap.servers", "localhost:9092"),
-    "option": ("subscribe", "office-input")
-}
-
 data = my_helper_obj.get_data(
     spark_session=spark)
 
 data.printSchema()
 # # ML Processing
 
-model_path="/home/selcuk/spark/bitirme-projesi/saved_model/pipeline_model"
+model_path="/home/selcuk/bitirme/saved_model/pipeline_model"
 transformed_df = my_helper_obj.get_transformed_df(model_path, data)
 
 transformed_df.printSchema()
+
 streamingQuery = transformed_df.writeStream \
     .foreachBatch(my_helper_obj.write_results) \
     .start().awaitTermination()

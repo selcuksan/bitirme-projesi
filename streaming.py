@@ -23,7 +23,7 @@ data = my_helper_obj.get_data(
 data.printSchema()
 # # ML Processing
 
-model_path="/home/selcuk/spark/bitirme-projesi/saved_model/pipeline_model"
+model_path="/home/selcuk/bitirme/saved_model/pipeline_model"
 transformed_df = my_helper_obj.get_transformed_df(model_path, data)
 
 transformed_df.printSchema()

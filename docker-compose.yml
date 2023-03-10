@@ -1,0 +1,39 @@
+version: "3"
+services:
+  elasticsearch:
+    container_name: elastic-container
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
+    environment:
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+    networks:
+      - bitirme_network
+    ports:
+      - 9200:9200
+  kibana:
+    container_name: kibana-container
+    image: docker.elastic.co/kibana/kibana:7.11.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elastic-container:9200
+    networks:
+      - bitirme_network
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+  spark:
+    image: jupyter/all-spark-notebook:latest
+    container_name: spark-container
+    ports:
+      - "8888:8888"
+    environment:
+      - GRANT_SUDO=yes
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - C:\Users\selcu\OneDrive\Masaüstü\bitirme:/home/selcuk/bitirme/
+    networks:
+      - bitirme_network
+
+networks:
+  bitirme_network:
+    driver: bridge
