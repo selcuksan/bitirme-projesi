@@ -1,3 +1,5 @@
 KETI/
 test_df/
-kafka/
+
+kafka/*
+!kafka/*.sh
