@@ -1,18 +1,23 @@
 import json
+import datetime
+
 from kafka import KafkaConsumer
 from elasticsearch import Elasticsearch
 
 
-es = Elasticsearch("https://kafka-test.es.us-central1.gcp.cloud.es.io:9243",
-                   basic_auth=["elastic", "NsaZVRzNUC6kRyCgLbVhePaF"], verify_certs=False)
+# es = Elasticsearch("https://kafka-test.es.us-central1.gcp.cloud.es.io:9243",
+#                    basic_auth=["elastic", "NsaZVRzNUC6kRyCgLbVhePaF"], verify_certs=False)
 
+
+es = Elasticsearch("http://elastic-container:9200")
 
 consumer = KafkaConsumer(
-    'office-input2',
+    'bitirme-input',
     bootstrap_servers=['localhost : 9092'],
     auto_offset_reset='earliest',
     enable_auto_commit=True,
-    group_id='group')
+    group_id='bitirme-input-1')
+
 
 for num, msg in enumerate(consumer):
     message = msg.value
@@ -28,10 +33,10 @@ for num, msg in enumerate(consumer):
     }
 
     json_string = json.dumps(json_string)
-    # print(message, json_string)
-    resp = es.index(index="bitirme2", id=num, document=json_string)
+    print(json_string)
+    resp = es.index(index="bitirme-input-1", id=num, body=json_string)
     # print(resp["result"])
-    # break
+    
 
 # b'508.0,23.79,78.0,55.05,2013-08-28T04:53:33.000+03:00,415,0' {"co2_value": 508.0, "temp_value": 23.79, "light_value": 78.0, "humidity_value": 55.05, "time": "2013-08-28T04:53:33.000+03:00", "room": "415", "label": "0"}
 # b'508.0,23.79,78.0,55.05,2013-08-28T04:53:33.000+03:00,415,0' {"co2_value": 508.0, "temp_value": 23.79, "light_value": 78.0, "humidity_value": 55.05, "time": "2013-08-28T04:53:33.000+03:00", "room": "415", "label": "0"}

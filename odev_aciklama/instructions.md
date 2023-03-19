@@ -21,8 +21,16 @@ cd /home/selcuk/bitirme/kafka
 ./bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 
 # Producer'ı Başlatma
-python3 dataframe_to_kafka.py --input "/home/selcuk/bitirme/test_df/data.csv" -t bitirme-input --excluded_cols 'pir_value' --sep ','
+cd /home/selcuk/bitirme
 
+python3 dataframe_to_kafka.py --input "/home/selcuk/bitirme/test_df/data.csv" -t bitirme-input --excluded_cols 'pir_value' --sep ',' --row_sleep_time=2
+
+
+# Elasticsearch'e Yazma
+cd /home/selcuk/bitirme
+python3 kafka_to_elastic.py
+
+# Spark Streaming'i Başlatma
 python3 streaming.py
 
 
