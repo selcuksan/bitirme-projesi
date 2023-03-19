@@ -1,11 +1,5 @@
-# VBO Data Engineering Bootcamp Final Project-2: Sensors Data Realtime Prediction
-
-## Dataset : 
-- https://github.com/erkansirin78/datasets/raw/master/sensors_instrumented_in_an_office_building_dataset.zip
-
 ## Source of Dataset : 
 - https://www.kaggle.com/ranakrc/smart-building-system
-
 
 ## About Dataset :
 This dataset is collected from 255 sensor time series, instrumented in 51 rooms in 4 floors of the Sutardja Dai Hall(SDH) at UC Berkeley. It can be used to investigate patterns in physical properties of a room in a building. Moreover, it can also be used for experiments relating to Internet-of-Things (IoT), sensor fusion network or time-series tasks. This dataset is suitable for both supervised (classification and regression) and unsupervised learning (clustering) tasks.
@@ -21,13 +15,6 @@ Data was collected over a period of one week from Friday, August 23, 2013 to Sat
 
 The passive infrared sensor (PIR sensor) is an electronic sensor that measures infrared (IR) light radiating from objects in its field of view, which measures the occupancy in a room. Approximately 6% of the PIR data is non-zero, indicating an occupied status of the room. The remaining 94% of the PIR data is zero, indicating an empty room.
 
-## Presentation :
-
-Prepare a final project that fulfills the tasks specified in the below and make a live demo within the 10-15 minutes allocated to you.
-The project must be presented live during the presentation. You can prepare a simple presentation that deals only with the problem. (presentation is not mandatory)
-Project preparation and presentation can be done by one or two people. The contribution of both people to the final project should be demonstrated during the presentation.
-
-
 ## Tasks:
 1. Using this data set, develop a machine learning model that predicts whether there is any activity in a room with known CO2, humidity, temperature, light and time information.
 
@@ -36,18 +23,3 @@ Project preparation and presentation can be done by one or two people. The contr
 3. Consume Kafka `office-input` topic with Spark streaming. Estimate the activity information using your model (activity, no-activity in the room).
 
 4. If there is activity in the room, produce it in the `office-activity` topic, and if there is no activity in the `office-no-activity` topic, including the room number and time information.
-
-
-## Architecture
-
-![](architecture.png)
-
----------
-
-
-
-
-
-
-
-

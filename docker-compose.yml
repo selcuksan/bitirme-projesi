@@ -26,6 +26,7 @@ services:
     container_name: spark-container
     ports:
       - "8888:8888"
+    user: root
     environment:
       - GRANT_SUDO=yes
       - JUPYTER_ENABLE_LAB=yes

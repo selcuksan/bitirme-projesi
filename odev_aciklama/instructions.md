@@ -20,6 +20,7 @@ cd /home/selcuk/bitirme/kafka
 ## Topic Listeleme
 ./bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 
+# Producer'ı Başlatma
 python3 dataframe_to_kafka.py --input "/home/selcuk/bitirme/test_df/data.csv" -t bitirme-input --excluded_cols 'pir_value' --sep ','
 
 python3 streaming.py
