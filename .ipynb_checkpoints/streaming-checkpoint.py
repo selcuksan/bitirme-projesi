@@ -32,4 +32,3 @@ streamingQuery = transformed_df.writeStream \
     .foreachBatch(my_helper_obj.write_results) \
     .start().awaitTermination()
 
-# streamingQuery.awaitTermination()
