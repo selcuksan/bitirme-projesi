@@ -38,7 +38,7 @@ class MyHelpers:
 
     def write_results(self, df, batchId):
         df.cache()
-        # df.show(5)
+        df.show(3)
         # df_columns = df.columns
         office_activitiy = df.filter("prediction == 1")
         # office_activitiy.show(1)
