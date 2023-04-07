@@ -38,5 +38,3 @@ python3 kafka_to_elastic.py
 # Spark Streaming'i Başlatma
 
 python3 streaming.py
-
-elastic password: DdU+\*3WfBd20Iuo-XD+T
