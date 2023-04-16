@@ -4,7 +4,7 @@ from pyspark.ml.pipeline import PipelineModel
 
 
 class MyHelpers:
-    def get_spark_session(self, session_params: dict) -> SparkSession:
+    def get_spark_session(self, session_params: dict={}) -> SparkSession:
         # Put your code here.
         spark = (SparkSession.builder
                  .appName("kafka_streaming")

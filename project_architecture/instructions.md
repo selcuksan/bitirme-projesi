@@ -1,6 +1,6 @@
 ## Proje Dizinine Gitme
 
-cd /home/selcuk/bitirme/kafka
+cd /home/selcuk/bitirme/kafka   
 
 ## Zookeeper ve Kafka server'ı çalıştırma
 
@@ -9,6 +9,7 @@ sleep 5
 ./bin/kafka-server-start.sh config/server.properties &
 
 ## Consumer Oluşturma
+cd /home/selcuk/bitirme/kafka   
 
 ./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bitirme-input
 ./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bitirme-activity
@@ -16,9 +17,9 @@ sleep 5
 
 # Producer'ı Başlatma
 
-cd /home/selcuk/bitirme
+cd /home/selcuk/bitirme/simulate
 
-python3 dataframe_to_kafka.py --input "/home/selcuk/bitirme/test_df/sensor-data.csv" -t bitirme-input --excluded_cols 'pir_value' --sep ',' --row_sleep_time=2
+python3 dataframe_to_kafka.py --input "/home/selcuk/bitirme/test_df/data.csv" -t bitirme-input --excluded_cols 'pir_value' --sep ',' --row_sleep_time=1
 
 ## Topic Oluşturma
 
@@ -30,11 +31,11 @@ python3 dataframe_to_kafka.py --input "/home/selcuk/bitirme/test_df/sensor-data.
 
 ./bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 
+# Spark Streaming'i Başlatma
+
+python3 streaming.py
+
 # Elasticsearch'e Yazma
 
 cd /home/selcuk/bitirme
 python3 kafka_to_elastic.py
-
-# Spark Streaming'i Başlatma
-
-python3 streaming.py
