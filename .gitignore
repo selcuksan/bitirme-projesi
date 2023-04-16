@@ -2,4 +2,3 @@ data/
 test_df/
 
 kafka/*
-!kafka/*.sh
