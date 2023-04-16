@@ -18,7 +18,7 @@ sleep 5
 
 cd /home/selcuk/bitirme
 
-python3 dataframe_to_kafka.py --input "/home/selcuk/bitirme/test_df/data.csv" -t bitirme-input --excluded_cols 'pir_value' --sep ',' --row_sleep_time=2
+python3 dataframe_to_kafka.py --input "/home/selcuk/bitirme/test_df/sensor-data.csv" -t bitirme-input --excluded_cols 'pir_value' --sep ',' --row_sleep_time=2
 
 ## Topic Oluşturma
 
