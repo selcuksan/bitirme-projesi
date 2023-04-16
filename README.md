@@ -34,8 +34,3 @@ python3 dataframe_to_kafka.py --input "/home/selcuk/bitirme/test_df/data.csv" -t
 # Spark Streaming'i Başlatma
 
 python3 streaming.py
-
-# Elasticsearch'e Yazma
-
-cd /home/selcuk/bitirme
-python3 kafka_to_elastic.py
