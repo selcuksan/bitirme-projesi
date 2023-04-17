@@ -1,0 +1,1 @@
+KAFKA_SERVER = "kafka-container:29092"

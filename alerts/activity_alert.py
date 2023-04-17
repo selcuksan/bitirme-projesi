@@ -3,9 +3,9 @@ from elasticsearch import Elasticsearch
 from kafka import KafkaConsumer
 import requests
 
-
+KAFKA_SERVER = "kafka-container:9092"
 def create_consumer():
-    bootstrap_servers = ['localhost:9092']
+    bootstrap_servers = [KAFKA_SERVER]
     topics = ['bitirme-activity', 'bitirme-no-activity']
 
     consumer = KafkaConsumer(bootstrap_servers=bootstrap_servers)

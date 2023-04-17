@@ -2,7 +2,7 @@ from pyspark.sql import SparkSession, functions as F
 from pyspark.sql import DataFrame
 from pyspark.ml.pipeline import PipelineModel
 
-
+KAFKA_SERVER = "kafka-container:9092"
 class MyHelpers:
     def get_spark_session(self, session_params: dict={}) -> SparkSession:
         spark = (SparkSession.builder
@@ -14,7 +14,7 @@ class MyHelpers:
     def get_data(self, spark_session: SparkSession) -> DataFrame:
         data = (spark_session.readStream
                 .format("kafka")
-                .option("kafka.bootstrap.servers", "localhost:9092")
+                .option("kafka.bootstrap.servers", KAFKA_SERVER)
                 .option("subscribe", "bitirme-input-1")
                 .load())
 
@@ -39,13 +39,13 @@ class MyHelpers:
         office_activitiy = df.filter("prediction == 1")
         office_activitiy.show(1)
         office_activitiy.withColumn("value", F.concat(F.col("time"), F.lit(' --- '), F.col("room"), F.lit(' --- '), F.col("prediction"))).selectExpr("CAST(value AS STRING)").write.format("kafka") \
-            .option("kafka.bootstrap.servers", "localhost:9092") \
+            .option("kafka.bootstrap.servers", KAFKA_SERVER) \
             .option("topic", "bitirme-activity") \
             .save()
 
         office_no_activity = df.filter("prediction == 0")
         # office_no_activity.show(1)
         office_no_activity.withColumn("value", F.concat(F.col("time"), F.lit(' --- '), F.col("room"), F.lit(' --- '), F.col("prediction"))).selectExpr("CAST(value AS STRING)").write.format("kafka") \
-            .option("kafka.bootstrap.servers", "localhost:9092") \
+            .option("kafka.bootstrap.servers", KAFKA_SERVER) \
             .option("topic", "bitirme-no-activity") \
             .save()

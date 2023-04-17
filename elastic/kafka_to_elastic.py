@@ -3,11 +3,11 @@ from time import sleep
 from kafka import KafkaConsumer
 from elasticsearch import Elasticsearch
 
-
+KAFKA_SERVER = "kafka-container:9092"
 def create_consumer():
     consumer = KafkaConsumer(
         'bitirme-input-1',
-        bootstrap_servers=['localhost : 9092'],
+        bootstrap_servers=[KAFKA_SERVER],
         auto_offset_reset='earliest',
         enable_auto_commit=True,
         group_id='bitirme-input-1')
@@ -40,6 +40,3 @@ class ToElastic(object):
             resp = ToElastic.es.index(
                 index="bitirme-input-1",body=json_string)
             # print(resp)
-            
-# to_elastic_obj = ToElastic()
-# to_elastic_obj.write_to_elastic()
