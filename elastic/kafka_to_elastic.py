@@ -6,7 +6,7 @@ from elasticsearch import Elasticsearch
 
 def create_consumer():
     consumer = KafkaConsumer(
-        'bitirme-input',
+        'bitirme-input-1',
         bootstrap_servers=['localhost : 9092'],
         auto_offset_reset='earliest',
         enable_auto_commit=True,
@@ -17,12 +17,11 @@ def create_consumer():
 class ToElastic(object):
     consumer = create_consumer()
     es = Elasticsearch("http://elastic-container:9200")
-
     def __init__(self):
         pass
 
     def write_to_elastic(self):
-        sleep(3)
+        sleep(1)
         for num, msg in enumerate(ToElastic.consumer):
             message = msg.value
             string = message.decode("ascii").split(",")
@@ -40,7 +39,7 @@ class ToElastic(object):
             # print(json_string)
             resp = ToElastic.es.index(
                 index="bitirme-input-1",body=json_string)
-            print(resp)
+            # print(resp)
             
 # to_elastic_obj = ToElastic()
 # to_elastic_obj.write_to_elastic()

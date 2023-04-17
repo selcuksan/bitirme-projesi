@@ -5,7 +5,6 @@ from pyspark.ml.pipeline import PipelineModel
 
 class MyHelpers:
     def get_spark_session(self, session_params: dict={}) -> SparkSession:
-        # Put your code here.
         spark = (SparkSession.builder
                  .appName("kafka_streaming")
                  .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.1")
@@ -13,11 +12,10 @@ class MyHelpers:
         return spark
 
     def get_data(self, spark_session: SparkSession) -> DataFrame:
-        # Put your code here
         data = (spark_session.readStream
                 .format("kafka")
                 .option("kafka.bootstrap.servers", "localhost:9092")
-                .option("subscribe", "bitirme-input")
+                .option("subscribe", "bitirme-input-1")
                 .load())
 
         data = data.selectExpr("CAST(value AS STRING)")
@@ -38,10 +36,8 @@ class MyHelpers:
 
     def write_results(self, df, batchId):
         df.cache()
-        df.show(3)
-        # df_columns = df.columns
         office_activitiy = df.filter("prediction == 1")
-        # office_activitiy.show(1)
+        office_activitiy.show(1)
         office_activitiy.withColumn("value", F.concat(F.col("time"), F.lit(' --- '), F.col("room"), F.lit(' --- '), F.col("prediction"))).selectExpr("CAST(value AS STRING)").write.format("kafka") \
             .option("kafka.bootstrap.servers", "localhost:9092") \
             .option("topic", "bitirme-activity") \
