@@ -3,7 +3,7 @@ import pandas as pd
 from kafka import KafkaProducer
 import time
 import argparse
-
+from config import KAFKA
 class DataFrameToKafka:
 
     def __init__(self, input,  sep, kafka_sep, row_sleep_time, source_file_extension, bootstrap_servers,
@@ -131,7 +131,7 @@ if __name__ == "__main__":
                     help="Sleep time in seconds per row. Default: 0.5")
     ap.add_argument("-t", "--topic", required=False, type=str, default="test1",
                     help="Kafka topic. Which topic to produce. Default: test1")
-    ap.add_argument("-b", "--bootstrap_servers", required=False, nargs='+', default=["kafka-container:9092"],
+    ap.add_argument("-b", "--bootstrap_servers", required=False, nargs='+', default=[KAFKA["SERVER"]],
                     help="Kafka bootstrap servers and port in a python list. Default: [localhost:9092]")
     ap.add_argument("-r", "--repeat", required=False, type=int, default=1,
                     help="How many times to repeat dataset. Default: 1")

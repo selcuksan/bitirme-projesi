@@ -2,26 +2,28 @@ import json
 from time import sleep
 from kafka import KafkaConsumer
 from elasticsearch import Elasticsearch
+from config import KAFKA, ELASTIC
 
-KAFKA_SERVER = "kafka-container:9092"
+
 def create_consumer():
     consumer = KafkaConsumer(
-        'bitirme-input-1',
-        bootstrap_servers=[KAFKA_SERVER],
+        KAFKA["TOPIC_INPUT"],
+        bootstrap_servers=[KAFKA["SERVER"]],
         auto_offset_reset='earliest',
         enable_auto_commit=True,
-        group_id='bitirme-input-1')
+        group_id=KAFKA["TOPIC_INPUT"])
     return consumer
 
 
 class ToElastic(object):
     consumer = create_consumer()
-    es = Elasticsearch("http://elastic-container:9200")
+    es = Elasticsearch(ELASTIC["SERVER"])
+
     def __init__(self):
         pass
 
     def write_to_elastic(self):
-        sleep(1)
+        # sleep(1)
         for num, msg in enumerate(ToElastic.consumer):
             message = msg.value
             string = message.decode("ascii").split(",")
@@ -31,12 +33,12 @@ class ToElastic(object):
                 "light_value": float(string[2]),
                 "humidity_value": float(string[3]),
                 "time": str(string[4]),
-                "room": str(string[5]),
-                "label": str(string[6])
+                "room": str(string[5])
+                # , "label": str(string[6])
             }
 
             json_string = json.dumps(json_string)
             # print(json_string)
             resp = ToElastic.es.index(
-                index="bitirme-input-1",body=json_string)
+                index=ELASTIC["INDEX_INPUT"], body=json_string)
             # print(resp)
