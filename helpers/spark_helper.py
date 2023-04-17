@@ -3,8 +3,10 @@ from pyspark.sql import DataFrame
 from pyspark.ml.pipeline import PipelineModel
 
 KAFKA_SERVER = "kafka-container:9092"
+
+
 class MyHelpers:
-    def get_spark_session(self, session_params: dict={}) -> SparkSession:
+    def get_spark_session(self, session_params: dict = {}) -> SparkSession:
         spark = (SparkSession.builder
                  .appName("kafka_streaming")
                  .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.1")
