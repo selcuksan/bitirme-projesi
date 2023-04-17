@@ -1,8 +1,8 @@
 import warnings
 
-from alerts.activity_alert import ToAlert
+from activity_alert import ToAlert
 from helpers.spark_helper import MyHelpers
-from elastic.kafka_to_elastic import ToElastic
+from kafka_to_elastic import ToElastic
 import multiprocessing
 
 warnings.simplefilter(action='ignore')
