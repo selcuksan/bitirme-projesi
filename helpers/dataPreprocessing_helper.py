@@ -93,4 +93,4 @@ def remove_outlier(dataframe, col_name, q1=0.01, q3=0.99):
     low_limit, up_limit = outlier_thresholds(dataframe, col_name, q1, q3)
     df_without_outliers = dataframe[~(
         (dataframe[col_name] < low_limit) | (dataframe[col_name] > up_limit))]
-    return
+    return df_without_outliers
