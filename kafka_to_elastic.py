@@ -23,7 +23,6 @@ class ToElastic(object):
         pass
 
     def write_to_elastic(self):
-        # sleep(1)
         for num, msg in enumerate(ToElastic.consumer):
             message = msg.value
             string = message.decode("ascii").split(",")
@@ -34,11 +33,9 @@ class ToElastic(object):
                 "humidity_value": float(string[3]),
                 "time": str(string[4]),
                 "room": str(string[5])
-                # , "label": str(string[6])
             }
 
             json_string = json.dumps(json_string)
-            # print(json_string)
             resp = ToElastic.es.index(
                 index=ELASTIC["INDEX_INPUT"], body=json_string)
             # print(resp)

@@ -75,7 +75,7 @@ class DataFrameToKafka:
 
     # Produce a pandas dataframe to kafka
     def df_to_kafka(self):
-
+    
         sayac = 0
         repeat_counter = 0
         df_size = len(self.df) * self.repeat
@@ -85,11 +85,8 @@ class DataFrameToKafka:
 
                 if self.key_index == 1000:
                     self.producer.send(self.topic, key=str(index).encode(), value=row[-1].encode())
-                    # row[-1] corresponds to all columns which already put in one column named value
-                    # If  -k or --key_index not used pandas df index will be sent to kafka as key
                 else:
                     self.producer.send(self.topic, key=str(row[self.key_index]).encode(), value=row[-1].encode())
-                    # if -k or --key_index used the column spesified in this option will be sent to kafka as key
                 self.producer.flush()
                 time.sleep(self.row_sleep_time)
                 sayac = sayac + 1

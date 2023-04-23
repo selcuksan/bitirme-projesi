@@ -19,10 +19,8 @@ def create_consumer():
 class ToAlert(object):
     es = Elasticsearch(ELASTIC["SERVER"])
     consumer = create_consumer()
-
     def __init__(self) -> None:
         pass
-
     def alert(self):
         while True:
             messages = ToAlert.consumer.poll()  # timeout_ms=1000
@@ -38,7 +36,7 @@ class ToAlert(object):
                     ToAlert.es.index(
                         index=ELASTIC["INDEX_ALERT"], body=json_string)
                     if topic_partition.topic == KAFKA["TOPIC_ACTIVITY"]:
-                        print(json_string)
+                        # print(json_string)
                         send_slack_message(string)
                     elif topic_partition.topic == KAFKA["TOPIC_NO_ACTIVITY"]:
                         continue

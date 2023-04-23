@@ -38,7 +38,7 @@ class MyHelpers:
     def write_results(self, df, batchId):
         df.cache()
         office_activitiy = df.filter("prediction == 1")
-        office_activitiy.show(1)
+        # office_activitiy.show(1)
         office_activitiy.withColumn("value", F.concat(F.col("time"), F.lit(' --- '), F.col("room"), F.lit(' --- '), F.col("prediction"))).selectExpr("CAST(value AS STRING)").write.format("kafka") \
             .option("kafka.bootstrap.servers", KAFKA["SERVER"]) \
             .option("topic", KAFKA["TOPIC_ACTIVITY"]) \
