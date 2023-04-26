@@ -23,3 +23,6 @@
 
     ./bin/kafka-topics --bootstrap-server localhost:9092 --create --topic bitirme-no-activity --partitions 3 --replication-factor 1
 
+
+
+![image](https://user-images.githubusercontent.com/56341239/234556027-bd7108d2-2750-475e-b8f0-3f1c3e48baa0.png)
