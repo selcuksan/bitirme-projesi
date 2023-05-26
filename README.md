@@ -59,4 +59,10 @@ Yeni bir Kafka topic oluşturmak için aşağıdaki komutları kullanabilirsiniz
 ```
 
 
+<<<<<<< HEAD
 <img src="https://user-images.githubusercontent.com/56341239/234556027-bd7108d2-2750-475e-b8f0-3f1c3e48baa0.png"  width="50%" height="20%">
+=======
+<img src="https://user-images.githubusercontent.com/56341239/234556027-bd7108d2-2750-475e-b8f0-3f1c3e48baa0.png"  width="50%" height="20%">
+
+
+>>>>>>> 55e61960bf18d9afcc909a2db6884237153c91c7
