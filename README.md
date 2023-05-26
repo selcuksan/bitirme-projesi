@@ -4,7 +4,6 @@
     python3 streaming.py 
     bash scripts/producer.sh
 
-
 ### Spark Streaming
     python3 streaming.py
 
