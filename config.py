@@ -10,3 +10,5 @@ ELASTIC = {
     "INDEX_INPUT": "bitirme-input-1",
     "INDEX_ALERT": "bitirme-alert-1"
 }
+
+SLACK_URL = 'https://hooks.slack.com/services/**********/***********/********************'

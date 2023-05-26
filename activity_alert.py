@@ -2,7 +2,7 @@ import json
 from elasticsearch import Elasticsearch
 from kafka import KafkaConsumer
 import requests
-from config import KAFKA, ELASTIC
+from config import KAFKA, ELASTIC, SLACK_URL
 from datetime import datetime
 from datetime import datetime, timezone, timedelta
 
@@ -45,12 +45,12 @@ class ToAlert(object):
                     elif topic_partition.topic == KAFKA["TOPIC_NO_ACTIVITY"]:
                         continue
                     else:
-                        print("Hata")
+                        print("Hata: TOPIC Bulunamadı")
 
 
 def send_slack_message(payload):
-    webhook_url = 'https://hooks.slack.com/services/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'
+    webhook_url = SLACK_URL
     response = requests.post(url=webhook_url, json={"text": str(payload)}, headers={
         'Content-Type': 'application/json'})
-    print(response)
+    # print(response)
     return response

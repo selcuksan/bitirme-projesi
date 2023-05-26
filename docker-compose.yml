@@ -34,6 +34,7 @@ services:
       - JUPYTER_ENABLE_LAB=yes
     volumes:
       - C:\Users\selcu\OneDrive\Masaüstü\bitirme:/home/selcuk/bitirme/
+      # - <proje-dizininiz>:/home/selcuk/bitirme/
     networks:
       - bitirme_network
 
