@@ -11,4 +11,4 @@ ELASTIC = {
     "INDEX_ALERT": "bitirme-alert-1"
 }
 
-SLACK_URL = 'https://hooks.slack.com/services/T053BH87XGW/B05ABRV5NE4/******'
+SLACK_URL = 'https://hooks.slack.com/services/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'
