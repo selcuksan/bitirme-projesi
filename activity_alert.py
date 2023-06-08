@@ -52,5 +52,5 @@ def send_slack_message(payload):
     webhook_url = SLACK_URL
     response = requests.post(url=webhook_url, json={"text": str(payload)}, headers={
         'Content-Type': 'application/json'})
-    # print(response)
+    print(response)
     return response
